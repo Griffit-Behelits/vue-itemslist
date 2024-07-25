@@ -1,6 +1,6 @@
 <template>
   <form class="form" @submit.prevent="">
-    <h2>Создание поста предмета</h2>
+    <h2>Создание постов предмета</h2>
     <input
       class="input"
       v-model.trim="post.title"
