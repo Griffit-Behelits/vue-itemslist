@@ -5,7 +5,7 @@
       <div>Описание: {{ post.description }}</div>
     </div>
     <div class="post-btn">
-      <button>Удалить</button>
+      <MyButton @click="$emit('remove', post)">Удалить</MyButton>
     </div>
   </div>
 </template>
@@ -28,16 +28,5 @@ defineProps({
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.post-btn button {
-  padding: 5px 10px;
-  background: #5e330e;
-  border: 1px solid #0d0d0d;
-  transition: 0.3s ease;
-  cursor: pointer;
-}
-.post-btn button:hover {
-  color: #fff;
 }
 </style>
