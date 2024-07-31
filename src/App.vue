@@ -2,6 +2,7 @@
   <div class="app">
     <h2>Страница с постами</h2>
     <PostForm @create="createPost" />
+    <MySelect v-model="selectedSort" :options="sortOptions" />
     <PostList v-if="loadPosts" :posts="posts" @remove="removePost" />
     <div v-else>Идет загрузка постов...</div>
   </div>
@@ -10,8 +11,10 @@
 <script setup>
 import PostList from "./components/PostList.vue";
 import PostForm from "./components/PostForm.vue";
+import MySelect from "./components/UI/MySelect.vue";
 import axios from "axios";
 import { onMounted, ref } from "vue";
+import { watch } from "vue";
 
 const posts = ref([]);
 const loadPosts = ref(false);
@@ -38,7 +41,19 @@ const fetchPost = async () => {
     loadPosts.value = false;
   }
 };
+const selectedSort = ref("");
+const sortOptions = ref([
+  { value: "title", name: "По названию" },
+  { value: "description", name: "По описанию" },
+]);
+
 onMounted(fetchPost);
+watch(selectedSort, (newValue) => {
+  console.log(newValue)
+  // posts.value.sort((post1, post2) => {
+  //   return post1[newValue]?.localeCompare(post2[newValue]);
+  // });
+});
 </script>
 
 <style scoped>
